@@ -1,0 +1,440 @@
+
+======================================================================
+>>> CELL 1
+======================================================================
+{
+  "start_date": "2015-01-01",
+  "end_date": "2026-08-24",
+  "vol_half_life": 60,
+  "pca_half_life": 252,
+  "burn_in_days": 756,
+  "vol_warmup_obs": 20,
+  "min_names": 30,
+  "max_gap_days": 4,
+  "vol_floor": 0.0001,
+  "z_clip": 10.0,
+  "min_net_gross": 0.001,
+  "jump_threshold": 0.5,
+  "splice_min_cover": 0.2,
+  "splice_min_days": 60,
+  "boot_n": 2000,
+  "boot_block": 21,
+  "rot_lags": [
+    21,
+    63,
+    252
+  ],
+  "trading_days": 252,
+  "benchmarks": [
+    "SPY",
+    "RSP"
+  ],
+  "seed": 0,
+  "snapshot_dir": "./data"
+}
+
+lambda_vol = 0.988514   lambda_pca = 0.997253
+covariance effective sample size ~ 727 days
+
+--- cell 1 ok (50.8s)
+
+======================================================================
+>>> CELL 2
+======================================================================
+loaded membership snapshot data\wiki_membership.json
+  captured  : 2026-10-24 06:56 UTC
+  content hash: 2df28d3ebfae3e17
+tables harvested: 8
+   constituents header=0 idx=0        rows= 503
+   constituents header=0 idx=1        rows=  11
+   constituents header=[0, 1] idx=0   rows= 502
+   constituents header=[0, 1] idx=1   rows=  10
+   changes header=0 idx=0             rows= 413
+   changes header=0 idx=1             rows=  11
+   changes header=[0, 1] idx=0        rows= 412
+   changes header=[0, 1] idx=1        rows=  10
+
+current constituents : 503
+recorded changes     : 412  (1976-07-01 to 2026-10-06)
+additions / removals : 392 / 388
+        date added removed        added_security        removed_security
+0 2026-10-06  TWLO     WBD                Twilio  Warner Bros. Discovery
+1 2026-10-06   NaN    CTVA                  <NA>                 Corteva
+2 2026-10-01  VYLR     NaN                 Vylor                    <NA>
+3 2026-09-21    BE     TAP          Bloom Energy            Molson Coors
+4 2026-09-21     P     TTD              Everpure          The Trade Desk
+5 2026-09-21  ILMN    BLDR        Illumina, Inc.    Builders FirstSource
+6 2026-08-18  RDDT     AVB                Reddit   AvalonBay Communities
+7 2026-08-05  FERG      EA  Ferguson Enterprises         Electronic Arts
+
+--- cell 2 ok (7.1s)
+
+======================================================================
+>>> CELL 3
+======================================================================
+timeline segments      : 307
+tickers ever a member  : 744
+members today          : 503
+symbols with a gap     : 21
+
+membership count over time (should hover near 500):
+2015-01-31    504
+2016-01-31    507
+2017-01-31    508
+2018-01-31    507
+2019-01-31    506
+2020-01-31    506
+2021-01-31    506
+2022-01-31    506
+2023-01-31    504
+2024-01-31    504
+2025-01-31    504
+2026-01-31    504
+Freq: 12ME
+
+--- cell 3 ok (2.6s)
+
+======================================================================
+>>> CELL 4
+======================================================================
+loaded snapshot data\prices_2015-01-01_2026-08-24.parquet
+
+shape          : (2926, 615)
+date range     : 2015-01-02 to 2026-08-21
+failed tickers : 0
+content hash   : 255853e91a9228f5
+
+--- cell 4 ok (3.5s)
+
+======================================================================
+>>> CELL 5
+======================================================================
+members ever in window : 744
+downloaded             : 610
+failed download        : 134
+   ABMD, ACE, ADS, AET, AGN, ALTR, ALXN, ANDV, ANSS, ARG, ARNC, ATVI, AVB, AVP, BCR, BHI, BMS, BRCM, BXLT, CA, CCE, CDAY, CELG, CERN, CFN, CHK, CMA, CMCSK, COL, COV, CPGX, CSC, CTLT, CTRA, CTXS, CVC, CXO, DAY, DFS, DISCA, DISCK, DISH, DNB, DNR, DO, DPS, DRE, DTV, DWDP, EA, ENDP, ESRX, ESV, ETFC, EVHC, FBHS, FDO, FL, FLIR, FRC, FTR, GAS, GGP, GMCR, GPS, HAR, HBI, HCBK, HES, HFC, HOLX, HOT, HSP, IPG, JNPR, JOY, JWN, K, KRFT, KSU, LEG, LLL, LLTC, LM, LO, LVLT, MJN, MNK, MON, MRO, MXIM, NBL, NLSN, PBCT, PCP, PDCO, PETM, PLL, PXD, QEP, QRVO, RAI, RHT, RTN, SCG, SEE, SIAL, SIVB, SNI, SRCL, STJ, SWN, SWY, TEG, TGNA, TIF, TSS, TWC, TWTR, TWX, TYC, VAR, VIAB, WBA, WBD, WCG, WFM, WIN, WLTW, WYN, XEC, XL, XLNX, YHOO
+
+spliced listings (dropped): 4
+   CEG    gap 2012-03-13 -> 2022-02-02  coverage 0.6%   ['Constellation Energy', 'Constellation Energy Group']
+   DOW    gap 2017-09-01 -> 2019-04-02  coverage 2.3%   ['Dow', 'Dow Chemical Company']
+   Q      gap 2011-03-31 -> 2017-08-29  coverage 0.0%   ['Qnity Electronics', 'QuintilesIMS', 'Qwest Communications']
+   SNDK   gap 2016-05-13 -> 2025-11-28  coverage 8.3%   ['SanDisk', 'Sandisk']
+
+re-entrants kept (index gap, continuous trading): 12
+   AMD, CIEN, DD, DELL, EQT, FSLR, ILMN, JBL, OI, PCG, TEL, TER
+   coverage inside the index gap, on the splice test's own window:
+      AMD    gap 2013-09-20 -> 2017-03-20    556 in-window days  100.0%
+      CIEN   gap 2009-12-18 -> 2026-02-09   2791 in-window days  100.0%
+      DD     gap 2017-09-01 -> 2019-06-03    437 in-window days  100.0%
+      DELL   gap 2013-10-29 -> 2024-09-23   2446 in-window days  83.3%
+      EQT    gap 2018-11-13 -> 2022-10-03    976 in-window days  100.0%
+      FSLR   gap 2017-03-20 -> 2022-12-19   1448 in-window days  100.0%
+      ILMN   gap 2024-06-24 -> 2026-09-21    542 in-window days  100.0%
+      JBL    gap 2014-11-05 -> 2023-12-18   2255 in-window days  100.0%
+      OI     gap 2000-12-05 -> 2008-12-31      0 in-window days  too short to judge
+      PCG    gap 2019-01-18 -> 2022-10-03    932 in-window days  100.0%
+      TEL    gap 2009-06-25 -> 2011-10-14      0 in-window days  too short to judge
+      TER    gap 2013-12-23 -> 2020-09-21   1439 in-window days  100.0%
+
+|log return| > 0.5 (check for unadjusted actions): 30
+   APA, BLDR, CNC, CPRI, CVNA, DXCM, ECHO, EPAM, FANG, FISV, FLR, FMC, FOSL, GL, GME, LUMN, MRNA, MUR, NBR, NKTR, OXY, PBI, PCG, PENN, POM...
+
+retained for analysis   : 606
+        n_obs      first       last  pct_missing  big_jumps  spliced
+Ticker                                                              
+CSRA        8 2026-08-12 2026-08-21         99.7          0    False
+BBBY       26 2026-07-17 2026-08-21         99.1          0    False
+NFX        34 2026-07-07 2026-08-21         98.8          0    False
+HONA       48 2026-06-15 2026-08-21         98.4          0    False
+FDXF       61 2026-05-27 2026-08-21         97.9          0    False
+APC       132 2026-02-12 2026-08-21         95.5          0    False
+SPLS      150 2026-01-16 2026-08-21         94.9          0    False
+Q         206 2025-10-27 2026-08-21         93.0          0     True
+SOLS      211 2025-10-20 2026-08-21         92.8          0    False
+POM       219 2025-10-08 2026-08-21         92.5          4    False
+CAM       221 2025-10-06 2026-08-21         92.4          0    False
+PCL       264 2025-08-05 2026-08-21         91.0          0    False
+
+--- cell 5 ok (3.7s)
+
+======================================================================
+>>> CELL 6
+======================================================================
+return panel   : (2926, 606)
+valid cells    : 1,678,882 of 1,773,156 (94.7%)
+invalidated by gap/price rules: 607
+
+active members per day: min 398, median 461, max 498
+
+--- cell 6 ok (4.5s)
+
+======================================================================
+>>> CELL 7
+======================================================================
+annualised vol, median stock : 28.7%
+max |z|                      : 60.97
+cap that contemporaneous standardisation would impose: 9.33
+observations beyond that cap : 542 (0.033%)  a contemporaneous sigma would censor these
+
+--- cell 7 ok (2.6s)
+
+======================================================================
+>>> CELL 8
+======================================================================
+running streaming PCA...
+done.
+days with a usable PC1: 2,905 of 2,926
+wrote data/diag.parquet
+
+--- cell 8 ok (3385.8s)
+
+======================================================================
+>>> CELL 9
+======================================================================
+burn-in discarded through  : 2018-01-03 (756 days)
+identity prior weight left : 12.500%
+analysis window            : 2018-01-03 to 2026-08-21  (2,170 days)
+
+annualised volatility (all three are $1-invested, no rescaling):
+EWMA_PCA    19.26%
+SPY         19.09%
+RSP         19.41%
+
+--- cell 9 ok (0.2s)
+
+======================================================================
+>>> CELL 10
+======================================================================
+full-sample correlations
+          EWMA_PCA     SPY    RSP
+EWMA_PCA    1.0000  0.9251  0.993
+SPY         0.9251  1.0000  0.936
+RSP         0.9930  0.9360  1.000
+
+rolling 252-day correlations, distribution over the window
+      PC1 vs SPY  PC1 vs RSP  SPY vs RSP
+0.25      0.8727      0.9925      0.8691
+0.50      0.9180      0.9947      0.9326
+0.75      0.9729      0.9960      0.9729
+minima: PC1 vs SPY 0.616 on 2026-08-13, PC1 vs RSP 0.945 on 2026-08-19, SPY vs RSP 0.767 on 2026-08-06
+<cell 10>:25: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+
+minimum rolling correlation with SPY: 0.616  on 2026-08-13
+
+--- cell 10 ok (4.0s)
+
+======================================================================
+>>> CELL 11
+======================================================================
+<cell 11>:19: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+positive weights, median   : 100.00%
+positive weights, min/max  : 98.80% / 100.00%
+days below 90% positive    : 0 of 2170
+
+variance explained: median 29.30%   range 16.87% to 42.88%
+
+median active names        : 472
+covariance effective sample: 727 days
+N / T_eff                  : 0.65
+
+A ratio much above ~0.1 puts the eigenvalue spectrum in Marčenko-Pastur
+territory: PC1 itself is a strong enough spike to survive, and the
+sampling bias in its reported variance share is about q/(lambda-1), which
+at this spike size is roughly half a per cent in relative terms.
+
+--- cell 11 ok (5.3s)
+
+======================================================================
+>>> CELL 12
+======================================================================
+<cell 12>:18: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+median daily turnover  : 0.0039
+mean daily turnover    : 0.0049
+annualised (252 x mean): 1.24x
+median gross short     : 0.00%
+median top-10 weight   : 4.06%
+
+Read the turnover figure before the return charts: if rebalancing costs
+would swamp the drift differences, the comparison is descriptive about
+weighting schemes, not a claim about an investable index.
+
+--- cell 12 ok (4.2s)
+
+======================================================================
+>>> CELL 13
+======================================================================
+<cell 13>:18: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+         total log return ann. drift ann. vol drift / vol (no r_f)
+EWMA_PCA            0.971     11.27%   19.26%                 0.59
+SPY                 1.177     13.67%   19.09%                 0.72
+RSP                 0.928     10.77%   19.41%                 0.56
+
+No risk-free rate is subtracted: these are total returns, and the
+last column is not a Sharpe ratio in the published sense.
+
+--- cell 13 ok (1.8s)
+
+======================================================================
+>>> CELL 14
+======================================================================
+<cell 14>:13: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+Overlapping windows: roughly 8 independent observations underlie this chart, not thousands.
+
+--- cell 14 ok (1.3s)
+
+======================================================================
+>>> CELL 15
+======================================================================
+<cell 15>:27: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+
+--- cell 15 ok (7.6s)
+
+======================================================================
+>>> CELL 16
+======================================================================
+Annualised drift, 95% stationary-block-bootstrap CI in brackets
+
+      days                   SPY                   RSP              EWMA_PCA
+Year                                                                        
+2018   250   -5.4%  [-32%, +18%]   -9.0%  [-34%, +14%]   -8.2%  [-33%, +14%]
+2019   252   +27.2%  [+6%, +47%]   +25.4%  [+1%, +49%]   +27.0%  [+4%, +49%]
+2020   253  +16.8%  [-44%, +65%]  +11.9%  [-62%, +71%]  +11.4%  [-62%, +71%]
+2021   252  +25.3%  [+10%, +40%]   +25.8%  [+8%, +44%]   +26.0%  [+8%, +44%]
+2022   251  -20.1%  [-56%, +17%]  -12.4%  [-47%, +24%]   -9.9%  [-44%, +26%]
+2023   250   +23.4%  [-1%, +48%]  +12.9%  [-18%, +46%]  +13.9%  [-15%, +44%]
+2024   252   +22.2%  [+6%, +38%]   +12.0%  [-8%, +30%]   +13.6%  [-6%, +32%]
+2025   250  +16.4%  [-14%, +43%]  +10.7%  [-14%, +33%]  +10.3%  [-13%, +31%]
+
+Pairwise differences over the full window (PC1 minus benchmark):
+  vs SPY: -2.40% per year   95% CI [-6.80%, +2.03%]   NOT significant
+  vs RSP: +0.50% per year   95% CI [-0.67%, +1.71%]   NOT significant
+
+Note: the rolling chart in Cell 14 and this table are computed on the same
+window; incomplete years are excluded from BOTH, so they cannot disagree.
+
+--- cell 16 ok (17.1s)
+
+======================================================================
+>>> CELL 17
+======================================================================
+<cell 17>:34: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+this cell : variance explained 20.01%   percent positive 99.00%
+the loop  : variance explained 20.01%   percent positive 99.00%
+
+OK: Cell 17 reproduces Cell 8 to 2dp.
+
+--- cell 17 ok (5.8s)
+
+======================================================================
+>>> CELL 18
+======================================================================
+<cell 18>:30: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+cumulative log return, peak to trough (19 Feb - 23 Mar 2020):
+EWMA_PCA    -49.83%
+SPY         -40.65%
+RSP         -49.12%
+
+cumulative log return, trough to year end:
+EWMA_PCA    +58.90%
+SPY         +52.96%
+RSP         +58.87%
+
+--- cell 18 ok (14.0s)
+
+======================================================================
+>>> CELL 19
+======================================================================
+[1] Future invariance
+  PASS  every pre-cutoff output bit-identical   13 diagnostics + vol, cutoff 2020-10-23, rtol=0 atol=0
+  PASS  cutoff-row outputs unchanged, so no one-day look-ahead   12 diagnostics + vol on 2020-10-23, pc1 excluded
+  PASS  the perturbation does reach the cutoff row   pc1 0.00433642 -> -0.019808
+
+[2] NaN containment
+  PASS  one missing return -> zero trailing NaN variances   A: trailing NaNs = 0
+
+[3] No standardisation cap
+  PASS  lagged standardisation reports moves beyond the cap   max|z| = 60.97 vs cap 9.33
+<cell 19>:77: RuntimeWarning: invalid value encountered in divide
+  PASS  contemporaneous standardisation is structurally capped   max|z| contemporaneous = 9.33 <= 9.33
+
+[4] Lag verified both ways
+  PASS  perturbing r_t leaves sigma_t unchanged
+  PASS  perturbing r_t changes sigma_{t+1}
+
+[5] Cell 17 reproduces Cell 8
+  PASS  variance explained agrees to 2dp   20.01% vs 20.01%
+  PASS  percent positive agrees to 2dp   99.00% vs 99.00%
+
+[6] Membership semantics
+  PASS  a name added after the window is not a member inside it   5 late additions, leaked: []
+  PASS  a name removed after the window is still a member at its end   5 late removals, dropped: []
+  PASS  re-entrant absent during its index gap   EQT: in 2016, out 2019/2020, back 2023
+  PASS  re-entrant kept in the analysis universe (traded through the gap)
+  PASS  same-day rename stays present in the earlier period   FOXA present in 2016
+
+[7] Gap rule
+  PASS  multi-day gap invalidates the return, not a giant 1-day move
+  PASS  non-positive price guarded
+
+[8] Recovery on synthetic data
+  PASS  PC1 correlates > 0.95 with the planted factor   corr = 0.9933
+  PASS  PC1 vol within ~2x of the true market vol   ratio = 1.042
+
+====================================================================
+19/19 passed
+====================================================================
+PASS - no look-ahead anywhere in the pipeline; all section 6 tests green.
+
+--- cell 19 ok (647.9s)
+
+======================================================================
+>>> CELL 20
+======================================================================
+<cell 20>:12: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+Rotation of the leading eigenvector, degrees
+          median    p90    max  annualised (deg/yr)
+rot_21d     1.12   2.59  14.42                13.39
+rot_63d     2.48   5.70  14.90                 9.94
+rot_252d    7.89  13.26  15.20                 7.89
+
+Median rotation by period (degrees)
+                                days  rot_21d  rot_63d  rot_252d
+period                                                          
+2018 (volatility spikes)         250     1.85     3.80     10.41
+2020 crash (19 Feb - 30 Apr)      51     7.20    14.27     13.03
+2020 after the crash (May-Dec)   170     0.47     1.59     13.84
+2022 (rate tightening)           251     1.63     3.55      9.02
+remainder of sample             1448     1.03     2.20      6.54
+
+2020 taken whole, against March alone (median degrees)
+   rot_21d: calendar 2020   0.67   March 2020  11.39
+   rot_63d: calendar 2020   1.90   March 2020  12.61
+   rot_252d: calendar 2020  13.60   March 2020  11.78
+
+maximum of each horizon
+   rot_21d:  14.42 on 2020-03-24
+   rot_63d:  14.90 on 2020-05-22
+   rot_252d:  15.20 on 2021-01-05
+
+--- cell 20 ok (1.5s)
+
+======================================================================
+>>> CELL 21
+======================================================================
+<cell 21>:17: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+lambda_1 / MP edge      : median 43.1x   min 23.2x   max 61.0x
+days with lambda_1 > edge : 100.00%
+eigenvalues above edge  : median 12 of 472 active names
+variance share above edge: median 51.41%
+
+A leading eigenvalue far above the edge on essentially every day means
+PC1 is a spike that noise alone cannot produce, so shrinking it away would
+discard signal. This speaks to separation only. The variance SHARE of
+PC1 carries a sampling bias of order q/(lambda-1), about half a per cent
+in relative terms here, against a downward bias from the identity prior
+that survives burn-in; neither is large enough to matter to any
+comparison made in the paper.
+
+--- cell 21 ok (1.9s)
+
+ALL CELLS EXECUTED

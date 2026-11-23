@@ -1,0 +1,449 @@
+
+======================================================================
+>>> CELL 1
+======================================================================
+{
+  "start_date": "2015-01-01",
+  "end_date": "2026-08-24",
+  "vol_half_life": 60,
+  "pca_half_life": 252,
+  "burn_in_days": 756,
+  "vol_warmup_obs": 20,
+  "min_names": 30,
+  "max_gap_days": 4,
+  "vol_floor": 0.0001,
+  "z_clip": 10.0,
+  "min_net_gross": 0.001,
+  "splice_min_cover": 0.2,
+  "splice_min_days": 60,
+  "schemes": [
+    "dirichlet",
+    "tilted"
+  ],
+  "sizes": [
+    1,
+    10,
+    20,
+    50
+  ],
+  "n_trials": 1000,
+  "beta_lookback": 126,
+  "beta_min_obs": 60,
+  "rebalance_days": 21,
+  "min_surviving": 0.5,
+  "spectrum_max_k": 250,
+  "panel_min_cover": 0.9,
+  "proxy_window": 252,
+  "cost_bps": 5.0,
+  "pc1_annual_turnover": 1.24,
+  "regime_q": [
+    0.33,
+    0.67
+  ],
+  "boot_n": 500,
+  "boot_rho_n": 500,
+  "boot_block": 21,
+  "trading_days": 252,
+  "seed": 0,
+  "snapshot_dir": "./data"
+}
+
+--- cell 1 ok (16.2s)
+
+======================================================================
+>>> CELL 2
+======================================================================
+loaded membership snapshot data\wiki_membership.json  (captured 2026-10-24 06:56 UTC, hash 2df28d3ebfae3e17)
+tickers ever a member: 744
+loaded price and dollar-volume snapshots
+spliced dropped: ['CEG', 'DOW', 'Q', 'SNDK']   retained: 606
+running streaming PCA (a few minutes) ...
+
+analysis window : 2018-01-03 to 2026-08-21  (2,170 days)
+stocks          : 606
+size proxy      : trailing 252d median dollar volume to 2018-01-02, 561 names priced
+
+hedge instrument correlations:
+        PC1     SPY    RSP
+PC1  1.0000  0.9251  0.993
+SPY  0.9251  1.0000  0.936
+RSP  0.9930  0.9360  1.000
+
+annualised vol:
+PC1    19.26%
+SPY    19.09%
+RSP    19.41%
+
+--- cell 2 ok (1869.9s)
+
+======================================================================
+>>> CELL 3
+======================================================================
+eligible names on 2018-01-03: 430
+size proxy across eligible names: median 117,317,023, p99/p50 = 12.0x
+
+--- cell 3 ok (0.1s)
+
+======================================================================
+>>> CELL 4
+======================================================================
+rolling covariances done; rebalance dates: 98
+  dirichlet  n=  1: E[max w] 1.000  panel 250x2042  VR SPY 0.308 RSP 0.355 PC1 0.357
+  tilted     n=  1: E[max w] 1.000  panel 250x2042  VR SPY 0.308 RSP 0.355 PC1 0.357
+  dirichlet  n= 10: E[max w] 0.291  panel 250x2044  VR SPY 0.635 RSP 0.737 PC1 0.740
+  tilted     n= 10: E[max w] 0.403  panel 250x2044  VR SPY 0.612 RSP 0.665 PC1 0.663
+  dirichlet  n= 20: E[max w] 0.180  panel 250x2044  VR SPY 0.719 RSP 0.836 PC1 0.839
+  tilted     n= 20: E[max w] 0.299  panel 250x2044  VR SPY 0.707 RSP 0.755 PC1 0.752
+  dirichlet  n= 50: E[max w] 0.090  panel 250x2044  VR SPY 0.790 RSP 0.919 PC1 0.922
+  tilted     n= 50: E[max w] 0.207  panel 250x2044  VR SPY 0.809 RSP 0.836 PC1 0.830
+
+done.
+wrote data/hedge_results.json
+
+--- cell 4 ok (221.9s)
+
+======================================================================
+>>> CELL 5
+======================================================================
+portfolios x days used, and the MP edge, per combination:
+  dirichlet  n=  1: K= 250 T= 2042 MP edge=1.82
+  tilted     n=  1: K= 250 T= 2042 MP edge=1.82
+  dirichlet  n= 10: K= 250 T= 2044 MP edge=1.82
+  tilted     n= 10: K= 250 T= 2044 MP edge=1.82
+  dirichlet  n= 20: K= 250 T= 2044 MP edge=1.82
+  tilted     n= 20: K= 250 T= 2044 MP edge=1.82
+  dirichlet  n= 50: K= 250 T= 2044 MP edge=1.82
+  tilted     n= 50: K= 250 T= 2044 MP edge=1.82
+
+=== dirichlet ===
+mean pairwise residual correlation
+hedge  unhedged     SPY     RSP     PC1  overlap_null
+n                                                    
+1        0.3487  0.0839  0.0133  0.0046        0.0022
+10       0.7443  0.3164  0.0397  0.0204        0.0129
+20       0.8456  0.4599  0.0709  0.0496        0.0251
+50       0.9335  0.6840  0.1593  0.1244        0.0598
+leading eigenvalue
+hedge  unhedged     SPY    RSP    PC1  overlap_null
+n                                                  
+1         90.86   29.20  23.81  24.20          4.21
+10       186.94   84.55  20.55  21.98          4.56
+20       211.72  118.61  25.45  25.39          7.63
+50       233.47  172.03  45.18  40.81         16.15
+
+=== tilted ===
+mean pairwise residual correlation
+hedge  unhedged     SPY     RSP     PC1  overlap_null
+n                                                    
+1        0.3487  0.0839  0.0133  0.0046        0.0022
+10       0.6723  0.1757  0.0295  0.0293        0.0136
+20       0.7663  0.2172  0.0685  0.0767        0.0264
+50       0.8546  0.2788  0.1572  0.1777        0.0619
+leading eigenvalue
+hedge  unhedged    SPY    RSP    PC1  overlap_null
+n                                                 
+1         90.86  29.20  23.81  24.20          4.21
+10       169.57  60.03  21.62  23.29          5.88
+20       192.60  75.08  29.31  32.52         10.85
+50       214.22  91.73  50.28  57.04         18.97
+<cell 5>:39: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+
+--- cell 5 ok (18.0s)
+
+======================================================================
+>>> CELL 6
+======================================================================
+Difference in mean residual correlation, 95% block-bootstrap CI over days
+(negative favours the first instrument: less common factor left behind)
+
+                           diff       lo       hi          verdict
+scheme    n  pair                                                 
+dirichlet 1  PC1 - RSP -0.00875 -0.01177 -0.00608      favours PC1
+             PC1 - SPY -0.07933 -0.08886 -0.06926      favours PC1
+tilted    1  PC1 - RSP -0.00875 -0.01177 -0.00608      favours PC1
+             PC1 - SPY -0.07933 -0.08886 -0.06926      favours PC1
+dirichlet 10 PC1 - RSP -0.01932 -0.03406 -0.00716      favours PC1
+             PC1 - SPY -0.29593 -0.32302 -0.26740      favours PC1
+tilted    10 PC1 - RSP -0.00017 -0.00815  0.00712  not significant
+             PC1 - SPY -0.14635 -0.16361 -0.12791      favours PC1
+dirichlet 20 PC1 - RSP -0.02131 -0.04937  0.00295  not significant
+             PC1 - SPY -0.41032 -0.44015 -0.37830      favours PC1
+tilted    20 PC1 - RSP  0.00827 -0.00751  0.02224  not significant
+             PC1 - SPY -0.14048 -0.16279 -0.11487      favours PC1
+dirichlet 50 PC1 - RSP -0.03491 -0.09152  0.01750  not significant
+             PC1 - SPY -0.55962 -0.58490 -0.53100      favours PC1
+tilted    50 PC1 - RSP  0.02054 -0.00343  0.04252  not significant
+             PC1 - SPY -0.10107 -0.12829 -0.06798      favours PC1
+
+Tally of verdicts:
+pair       verdict        
+PC1 - RSP  favours PC1        3
+           not significant    5
+PC1 - SPY  favours PC1        8
+
+--- cell 6 ok (6554.8s)
+
+======================================================================
+>>> CELL 7
+======================================================================
+Variance reduction  1 - Var(residual)/Var(portfolio)
+p10/p90 are dispersion ACROSS PORTFOLIOS, not confidence intervals
+
+=== dirichlet ===
+hedge     SPY     RSP     PC1
+n                            
+1      0.3080  0.3545  0.3572
+10     0.6352  0.7369  0.7403
+20     0.7194  0.8363  0.8393
+50     0.7903  0.9193  0.9217
+=== tilted ===
+hedge     SPY     RSP     PC1
+n                            
+1      0.3080  0.3545  0.3572
+10     0.6117  0.6645  0.6631
+20     0.7069  0.7553  0.7516
+50     0.8093  0.8365  0.8299
+
+Paired mean squared-residual difference, 95% CI over days
+Use this, not VR, to judge the size sweep: it is not scale-free either,
+since it carries variance units that shrink with n, but it is free of
+VR's denominator, which falls with n for reasons unrelated to hedging.
+
+                        mean_sq_diff            lo            hi          verdict
+scheme    n  pair                                                                
+dirichlet 1  PC1 - SPY -2.400730e-05 -3.471610e-05 -1.601210e-05      favours PC1
+             PC1 - RSP  1.949400e-06 -1.601000e-07  3.483700e-06  not significant
+tilted    1  PC1 - SPY -2.400730e-05 -3.471610e-05 -1.601210e-05      favours PC1
+             PC1 - RSP  1.949400e-06 -1.601000e-07  3.483700e-06  not significant
+dirichlet 10 PC1 - SPY -2.381080e-05 -3.151700e-05 -1.785790e-05      favours PC1
+             PC1 - RSP -1.100000e-07 -1.510600e-06  6.769000e-07  not significant
+tilted    10 PC1 - SPY -8.842700e-06 -1.392290e-05 -4.899000e-06      favours PC1
+             PC1 - RSP  1.579300e-06  6.282000e-07  2.389800e-06      favours RSP
+dirichlet 20 PC1 - SPY -2.374660e-05 -3.149790e-05 -1.793090e-05      favours PC1
+             PC1 - RSP -2.596000e-07 -1.667000e-06  5.531000e-07  not significant
+tilted    20 PC1 - SPY -6.674200e-06 -1.119710e-05 -3.248800e-06      favours PC1
+             PC1 - RSP  1.564700e-06  5.669000e-07  2.348600e-06      favours RSP
+dirichlet 50 PC1 - SPY -2.361810e-05 -3.125240e-05 -1.794690e-05      favours PC1
+             PC1 - RSP -3.023000e-07 -1.685600e-06  5.019000e-07  not significant
+tilted    50 PC1 - SPY -1.355300e-06 -4.090900e-06  1.019600e-06  not significant
+             PC1 - RSP  1.698600e-06  7.715000e-07  2.517900e-06      favours RSP
+
+--- cell 7 ok (21.8s)
+
+======================================================================
+>>> CELL 8
+======================================================================
+Residual exposure left to the other instrument (0 = fully spanned)
+
+=== dirichlet ===
+test  resid(PC1) on RSP  resid(PC1) on SPY  resid(RSP) on PC1  resid(SPY) on PC1
+n                                                                               
+1                0.0306             0.0186             0.0277             0.1971
+10               0.0252             0.0156             0.0228             0.1877
+20               0.0251             0.0159             0.0226             0.1874
+50               0.0247             0.0161             0.0214             0.1863
+=== tilted ===
+test  resid(PC1) on RSP  resid(PC1) on SPY  resid(RSP) on PC1  resid(SPY) on PC1
+n                                                                               
+1                0.0306             0.0186             0.0277             0.1971
+10               0.0102             0.0388            -0.0015             0.1308
+20               0.0084             0.0460            -0.0051             0.1202
+50               0.0042             0.0586            -0.0118             0.0982
+PC1 and SPY correlate about 0.93, so a joint regression would be badly
+collinear (VIF ~7) and its coefficients unstable. The one-at-a-time form
+asks the same question without that fragility.
+
+--- cell 8 ok (0.0s)
+
+======================================================================
+>>> CELL 9
+======================================================================
+ex-ante vol terciles (annualised): calm <= 14.0% < normal <= 18.2% < stressed
+normal      737
+stressed    717
+calm        716
+
+=== dirichlet: variance reduction by regime ===
+  SPY
+n            1      10     20     50
+cut                                 
+calm      0.160  0.432  0.533  0.635
+normal    0.219  0.521  0.622  0.713
+stressed  0.417  0.733  0.796  0.846
+  RSP
+n            1      10     20     50
+cut                                 
+calm      0.214  0.580  0.717  0.852
+normal    0.268  0.642  0.767  0.880
+stressed  0.459  0.815  0.888  0.945
+  PC1
+n            1      10     20     50
+cut                                 
+calm      0.218  0.584  0.720  0.854
+normal    0.272  0.649  0.774  0.886
+stressed  0.461  0.818  0.890  0.947
+
+=== tilted: variance reduction by regime ===
+  SPY
+n            1      10     20     50
+cut                                 
+calm      0.160  0.418  0.532  0.672
+normal    0.219  0.502  0.612  0.737
+stressed  0.417  0.716  0.790  0.868
+  RSP
+n            1      10     20     50
+cut                                 
+calm      0.214  0.497  0.609  0.723
+normal    0.268  0.567  0.674  0.779
+stressed  0.459  0.757  0.828  0.887
+  PC1
+n            1      10     20     50
+cut                                 
+calm      0.218  0.494  0.601  0.707
+normal    0.272  0.565  0.668  0.767
+stressed  0.461  0.757  0.827  0.885
+
+=== by year (PC1) ===
+scheme    dirichlet                      tilted                     
+n                1      10     20     50     1      10     20     50
+cut                                                                 
+year 2018     0.333  0.720  0.828  0.921  0.333  0.673  0.767  0.840
+year 2019     0.270  0.643  0.768  0.887  0.270  0.591  0.700  0.806
+year 2020     0.531  0.858  0.916  0.959  0.531  0.809  0.869  0.916
+year 2021     0.257  0.638  0.763  0.873  0.257  0.545  0.648  0.741
+year 2022     0.415  0.789  0.875  0.940  0.415  0.723  0.804  0.868
+year 2023     0.281  0.667  0.787  0.893  0.281  0.560  0.657  0.746
+year 2024     0.200  0.552  0.689  0.833  0.200  0.445  0.544  0.649
+year 2025     0.300  0.680  0.793  0.896  0.300  0.592  0.692  0.781
+year 2026     0.140  0.409  0.559  0.738  0.140  0.313  0.412  0.529
+
+--- cell 9 ok (0.2s)
+
+======================================================================
+>>> CELL 10
+======================================================================
+Annualised cost of running each hedge, at 5 bps per side
+PC1 also pays 1.2x annual internal turnover
+
+=== dirichlet ===
+hedge      SPY      RSP      PC1
+n                               
+1      0.00054  0.00053  0.00117
+10     0.00027  0.00024  0.00086
+20     0.00023  0.00018  0.00080
+50     0.00019  0.00012  0.00074
+=== tilted ===
+hedge      SPY      RSP      PC1
+n                               
+1      0.00054  0.00053  0.00117
+10     0.00029  0.00028  0.00091
+20     0.00024  0.00022  0.00085
+50     0.00018  0.00018  0.00080
+
+--- cell 10 ok (0.0s)
+
+======================================================================
+>>> CELL 11
+======================================================================
+==============================================================================
+HYPOTHESIS 1  PC1 removes more systematic risk than SPY
+==============================================================================
+  residual correlation : {'favours PC1': 8}  of 8 combinations
+  squared residuals    : {'favours PC1': 7, 'not significant': 1}  of 8 combinations
+  dirichlet  VR PC1 vs SPY: n=1: 0.357/0.308  n=10: 0.740/0.635  n=20: 0.839/0.719  n=50: 0.922/0.790
+  tilted     VR PC1 vs SPY: n=1: 0.357/0.308  n=10: 0.663/0.612  n=20: 0.752/0.707  n=50: 0.830/0.809
+
+==============================================================================
+HYPOTHESIS 2  PC1 removes more systematic risk than RSP  (residual cross-section)
+==============================================================================
+  verdicts: {'not significant': 5, 'favours PC1': 3}  of 8 combinations
+                 diff       lo       hi          verdict
+scheme    n                                             
+dirichlet 1  -0.00875 -0.01177 -0.00608      favours PC1
+tilted    1  -0.00875 -0.01177 -0.00608      favours PC1
+dirichlet 10 -0.01932 -0.03406 -0.00716      favours PC1
+tilted    10 -0.00017 -0.00815  0.00712  not significant
+dirichlet 20 -0.02131 -0.04937  0.00295  not significant
+tilted    20  0.00827 -0.00751  0.02224  not significant
+dirichlet 50 -0.03491 -0.09152  0.01750  not significant
+tilted    50  0.02054 -0.00343  0.04252  not significant
+
+==============================================================================
+HYPOTHESIS 3  PC1 reduces more total variance than RSP  (squared residuals)
+==============================================================================
+  verdicts: {'not significant': 5, 'favours RSP': 3}  of 8 combinations
+              mean_sq_diff            lo            hi          verdict
+scheme    n                                                            
+dirichlet 1   1.949400e-06 -1.601000e-07  3.483700e-06  not significant
+tilted    1   1.949400e-06 -1.601000e-07  3.483700e-06  not significant
+dirichlet 10 -1.100000e-07 -1.510600e-06  6.769000e-07  not significant
+tilted    10  1.579300e-06  6.282000e-07  2.389800e-06      favours RSP
+dirichlet 20 -2.596000e-07 -1.667000e-06  5.531000e-07  not significant
+tilted    20  1.564700e-06  5.669000e-07  2.348600e-06      favours RSP
+dirichlet 50 -3.023000e-07 -1.685600e-06  5.019000e-07  not significant
+tilted    50  1.698600e-06  7.715000e-07  2.517900e-06      favours RSP
+
+------------------------------------------------------------------------------
+Size sweep: PC1 - SPY squared-residual difference across sizes
+(flat in n rules out convergence on equal weighting as n grows;
+ whether the advantage IS a weighting effect is Hypothesis 2's job)
+  dirichlet  n=1: -2.401e-05  n=10: -2.381e-05  n=20: -2.375e-05  n=50: -2.362e-05
+  tilted     n=1: -2.401e-05  n=10: -8.843e-06  n=20: -6.674e-06  n=50: -1.355e-06
+
+Terrain check: the size-tilted scheme moves the test toward SPY's own
+weighting. If hypothesis 1 survives there, it is not an artefact of drawing
+portfolios that are equal-weighted in expectation.
+
+--- cell 11 ok (0.1s)
+
+======================================================================
+>>> CELL 12
+======================================================================
+[1] Samplers
+  PASS  dirichlet n=10: sums to 1
+  PASS  dirichlet n=10: E[max w] = H_n/n   0.2924 vs 0.2929
+  PASS  dirichlet n=20: sums to 1
+  PASS  dirichlet n=20: E[max w] = H_n/n   0.1799 vs 0.1799
+  PASS  dirichlet n=50: sums to 1
+  PASS  dirichlet n=50: E[max w] = H_n/n   0.0899 vs 0.0900
+  PASS  tilted with a flat proxy reproduces Dirichlet(1)   0.1794 vs 0.1799
+  PASS  the tilt actually concentrates weight   E[max w] 0.299 tilted vs 0.180 dirichlet
+
+[1b] Schemes share their draws
+  PASS  n=1: variance reduction identical across schemes   SPY 0.307957/0.307957  RSP 0.354508/0.354508  PC1 0.357198/0.357198
+  PASS  n=1: residual correlation identical across schemes   SPY +0.083884  RSP +0.013307  PC1 +0.004556
+  PASS  n=1: both schemes assign unit weight   max w = 1.000000 / 1.000000
+  PASS  n=50: schemes genuinely differ   max w = 0.0897 / 0.2072
+
+[2] Point-in-time draw
+  PASS  every eligible name was an index member with data on the draw date
+
+[3] Self-hedge
+  PASS  beta on self is 1   max|beta-1| = 2.22e-15
+  PASS  residual on self is 0
+
+[4] Future invariance
+  PASS  betas through the cutoff row are bit-identical, all instruments   cutoff 2022-04-26, SPY ok, RSP ok, PC1 ok
+
+[5] The metric is calibrated
+  PASS  dirichlet: unhedged factor far exceeds the overlap floor   211.7 vs 7.6
+  PASS  dirichlet: every hedge reduces the residual spike
+  PASS  tilted: unhedged factor far exceeds the overlap floor   192.6 vs 10.9
+  PASS  tilted: every hedge reduces the residual spike
+  PASS  paired panels share one grid   {'SPY': (2044, 250), 'RSP': (2044, 250), 'PC1': (2044, 250)}
+  PASS  a panel against itself gives exactly zero difference   +0.00e+00
+
+[6] Synthetic recovery
+  PASS  planted factor detected unhedged   lam1 = 100.6
+  PASS  hedging the true factor collapses the spike   100.6 -> 6.3
+  PASS  hedging an unrelated series moves nothing   mean beta -0.0086, variance reduction -0.0081
+  PASS  with no common factor the panel sits at the overlap floor   lam1 5.73 vs floor 5.79
+
+======================================================================
+26/26 passed
+======================================================================
+PASS - lag-clean, calibrated metric, both samplers behaving.
+
+--- cell 12 ok (21.9s)
+
+ALL CELLS EXECUTED
